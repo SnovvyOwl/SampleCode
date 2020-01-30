@@ -1,4 +1,4 @@
-# Matlab Sample Code
+# Matlab Sample Code with E2BOX EBIMU 9 dof V4
 ## written by SnowyOwl
 
 ### AHRS.m
