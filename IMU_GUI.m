@@ -10,7 +10,7 @@ A.axis1.Title.String='IMU trajectory';
  
 %     axis([-4 4 -4 4 -4 4])
 
-%%% angle ui object generate
+%%% Angle UI
 A.rolltext=uicontrol('parent',A.figure,'Style','text','String','roll','units','normalized','Position',[0.1,0.2,0.13,0.05]);
 A.pitchtext=uicontrol('parent',A.figure,'Style','text','String','pitch','units','normalized','Position',[0.3,0.2,0.13,0.05]);
 A.yawtext=uicontrol('parent',A.figure,'Style','text','String','yaw','units','normalized','Position',[0.5,0.2,0.13,0.05]);
@@ -18,36 +18,26 @@ A.roll=uicontrol('parent',A.figure,'Style','edit','String','roll','units','norma
 A.pitch=uicontrol('parent',A.figure,'Style','edit','String','pitch','units','normalized','Enable','inactive','Position',[0.3,0.18,0.13,0.05]);
 A.yaw=uicontrol('parent',A.figure,'Style','edit','String','yaw','units','normalized','Enable','inactive','Position',[0.5,0.18,0.13,0.05]);
 
-%%% acc ui object generate
+%%% Acc UI
 A.accXtext=uicontrol('parent',A.figure,'Style','text','String','acc_X','units','normalized','Position',[0.1,0.12,0.13,0.05]);
 A.accYtext=uicontrol('parent',A.figure,'Style','text','String','acc_Y','units','normalized','Position',[0.3,0.12,0.13,0.05]);
 A.accZtext=uicontrol('parent',A.figure,'Style','text','String','acc_Z','units','normalized','Position',[0.5,0.12,0.13,0.05]);
 A.accX=uicontrol('parent',A.figure,'Style','edit','String','acc_X','units','normalized','Enable','inactive','Position',[0.1,0.1,0.13,0.05]);
 A.accY=uicontrol('parent',A.figure,'Style','edit','String','acc_Y','units','normalized','Enable','inactive','Position',[0.3,0.1,0.13,0.05]);
 A.accZ=uicontrol('parent',A.figure,'Style','edit','String','acc_Z','units','normalized','Enable','inactive','Position',[0.5,0.1,0.13,0.05]);
-%%%%%%%%%%%%% panel Run 1 %%%%%%%%%%%%%%%%%%
-A.panel10 = uipanel('parent',A.figure,'Title','Plot',...
-    'Position',[.87 .2 .12 .2]);
-
-A.run10 = uicontrol('parent',A.panel10,'Style', 'pushbutton', 'String', 'Run',...
-    'units','normalized','Position', [.07 .55 0.8 .2],...
-    'Callback',@pushbutton_run);
-A.load = uicontrol('parent',A.panel10,'Style', 'pushbutton', 'String', 'Stop saving',...
-    'units','normalized','Position', [.07 .3 0.8 .2],...
-    'Callback',@pushbutton_stopsave);
-A.close = uicontrol('parent',A.panel10,'Style', 'pushbutton', 'String', 'Close',...
-    'units','normalized','Position', [.07 0.05 0.8 .2],...
-    'Callback',@pushbutton_close);
-A.saving = uicontrol('parent',A.panel10,'Style', 'pushbutton' , 'String', 'Saving',...
-    'units','normalized','Position', [.07 .8 0.8 .2],...
-    'Callback',@pushbutton_saving);
+%%%%%%%%%%%%% panel A %%%%%%%%%%%%%%%%%%
+A.panel10 = uipanel('parent',A.figure,'Title','Plot','Position',[.87 .2 .12 .2]);
+A.run10 = uicontrol('parent',A.panel10,'Style', 'pushbutton', 'String', 'Run','units','normalized','Position', [.07 .55 0.8 .2],'Callback',@pushbutton_run);
+A.load = uicontrol('parent',A.panel10,'Style', 'pushbutton', 'String', 'Stop saving','units','normalized','Position', [.07 .3 0.8 .2],'Callback',@pushbutton_stopsave);
+A.close = uicontrol('parent',A.panel10,'Style', 'pushbutton', 'String', 'Close','units','normalized','Position', [.07 0.05 0.8 .2],'Callback',@pushbutton_close);
+A.saving = uicontrol('parent',A.panel10,'Style', 'pushbutton' , 'String', 'Saving','units','normalized','Position', [.07 .8 0.8 .2],'Callback',@pushbutton_saving);
 
 %%%%%%%%%%%%% Callback function %%%%%%%%%%%%%%%%%%
   function pushbutton_run(source,callbackdata) 
-    delete(instrfindall); % 현재 연결되어 있는 시리얼포트들을 다 지웁니다.
+    delete(instrfindall); % Erase All Serial Connection
     COMPORT='COM3';
     IMU=serial(COMPORT,'BaudRate', 115200, 'DataBits', 8, 'parity', 'none','stopbits',1);
-    fopen(IMU); % Port 열기
+    fopen(IMU); % Port Open
     IMUdata=[];
     pause(0.01);
     %fprintf(IMU,'<SOA2>');
@@ -68,7 +58,6 @@ A.saving = uicontrol('parent',A.panel10,'Style', 'pushbutton' , 'String', 'Savin
     filesave=1;
     while(1)
         data = fscanf(IMU);
-        % data정리
         data=strcat(data);
         splitdata=strsplit(data,',');
         splitdata{1} = erase(splitdata{1},'*');
@@ -89,7 +78,9 @@ A.saving = uicontrol('parent',A.panel10,'Style', 'pushbutton' , 'String', 'Savin
 % 
 %  V=V+(IMUdata(10:12)+predata(10:12))/2*(IMUdata(6)-predata(6));
 %  D=D+(V+preV)/2*(IMUdata(6)-predata(6));
-% 
+%
+
+%         trajectory Generate
 %         origin= origin+D;
 %         new_tx=R*tx';
 %         new_ty=R*ty';
