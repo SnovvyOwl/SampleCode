@@ -1,5 +1,5 @@
-# Matlab Sample Code with E2BOX EBIMU 9 dof V4
-## written by SnowyOwl
+# Matlab Sample Code
+##  with E2BOX EBIMU 9 dof V4
 
 ### AHRS.m
 This code measure ANGLE of RPY, and Angular Velocity by AHRS(E2Box EBIMU 9 DOF V4).
