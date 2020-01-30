@@ -1,8 +1,8 @@
 % AHRS EBIMU 9DOF V4 for raspberry pi
 % This code is written by SnowyOwl
 clear; clc;
-ipadress='192.168.137.154'; %ip adress Raspberry pi
-mypi=raspi(ipadress,'pi','robotics'); %raspi obeject consturct
+ipadress='192.168.0.0'; %ip adress Raspberry pi
+mypi=raspi(ipadress,'pi','password'); %raspi obeject consturct
 IMU=serialdev(mypi,'/dev/ttyUSB0'); %AHRS Serial Port
 IMUdata=[];
 readdata="";
