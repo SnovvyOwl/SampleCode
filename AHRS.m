@@ -1,5 +1,5 @@
 % AHRS EBIMU 9DOF V4 for raspberry pi
-% This code is written by seong won lee
+% This code is written by SnowyOwl
 clear; clc;
 ipadress='192.168.137.154'; %ip adress Raspberry pi
 mypi=raspi(ipadress,'pi','robotics'); %raspi obeject consturct
@@ -17,7 +17,7 @@ readdata="";
              readdata= read(IMU,1,'char');
              data=data+readdata;
         end            
-        % dataÁ¤¸®
+        % dataÃÂ¤Â¸Â®
         splitdata=strsplit(data,',');
         splitdata{6} = splitdata{6}(1:length(splitdata{6})-3);
         c=clock;
