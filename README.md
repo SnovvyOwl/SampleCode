@@ -1,4 +1,4 @@
-#Sample Code
+# Sample Code
 ## Matlab Sample Code
 ###  with E2BOX EBIMU 9 dof V4
 
@@ -11,6 +11,8 @@ The RaspberryPI zero W is connectied Matlab by WIFi
 This code is not Succesfull code. Because It Can Read data From AHRS(E2Box EBIMU 9 DOF V4). But I can't Calculate exact Trajectory..
 AHRS is Connected my Computer directly by Serial Communiction.
 
-## opencv
-### linetracing 
-### line tracing with Mask
+## opencv Sample code
+### linetracing.py
+This code is linedectecting code
+### line tracing with Mask.py
+This code is line dectecting code with Mask
